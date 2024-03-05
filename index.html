@@ -95,37 +95,37 @@
 
 <script>
     function showContent(imageSrc) {
-        document.getElementById('mainImage').src = imageSrc;
-        document.getElementById('mainText').style.display = 'none';
-        // Lisätään koodi nappia 'Kodin treenit' varten
-        if (imageSrc === 'kuva2.jpg') {
-            addHomeWorkoutButton();
-        } else {
-            removeHomeWorkoutButton();
-        }
-        // Lisätään napit "Ulkoilma treenit" ja "Virtuaaliset harjoitukset"
-        if (imageSrc === 'kuva2.jpg') {
-            addOutdoorWorkoutButton();
-            addVirtualWorkoutButton();
-        } else {
-            removeOutdoorWorkoutButton();
-            removeVirtualWorkoutButton();
-        }
-        // Lisätään kuvallinen nappi "Ruokavalio"
-        if (imageSrc === 'kuva3.jpg') {
-            addDietButton();
-            addCoachingButton();
-        } else {
-            removeDietButton();
-            removeCoachingButton();
-        }
-        // Lisätään kuvallinen nappi "Stressinhallinta"
-        if (imageSrc === 'kuva4.jpg') {
-            addStressManagementButton();
-        } else {
-            removeStressManagementButton();
-        }
+    document.getElementById('mainImage').src = imageSrc;
+    document.getElementById('mainText').style.display = 'none';
+    // Poista "Kodin treenit" -nappi joka kerta kun näytetään sisältöä
+    removeHomeWorkoutButton();
+    // Lisätään koodi nappia 'Kodin treenit' varten
+    if (imageSrc === 'kuva2.jpg') {
+        addHomeWorkoutButton();
     }
+    // Lisätään napit "Ulkoilma treenit" ja "Virtuaaliset harjoitukset"
+    if (imageSrc === 'kuva2.jpg') {
+        addOutdoorWorkoutButton();
+        addVirtualWorkoutButton();
+    } else {
+        removeOutdoorWorkoutButton();
+        removeVirtualWorkoutButton();
+    }
+    // Lisätään kuvallinen nappi "Ruokavalio"
+    if (imageSrc === 'kuva3.jpg') {
+        addDietButton();
+        addCoachingButton();
+    } else {
+        removeDietButton();
+        removeCoachingButton();
+    }
+    // Lisätään kuvallinen nappi "Stressinhallinta"
+    if (imageSrc === 'kuva4.jpg') {
+        addStressManagementButton();
+    } else {
+        removeStressManagementButton();
+    }
+}
 
     function showHomePage() {
         document.getElementById('mainImage').src = 'kuva1.jpg';
@@ -156,11 +156,11 @@
     }
 
     function removeHomeWorkoutButton() {
-        var buttonToRemove = document.querySelector('#contentContainer img[alt="Kodin treenit"]');
-        if (buttonToRemove) {
-            buttonToRemove.parentNode.removeChild(buttonToRemove);
-        }
+    var buttonToRemove = document.querySelector('#contentContainer button');
+    if (buttonToRemove) {
+        buttonToRemove.parentNode.removeChild(buttonToRemove);
     }
+}
 
     // Ulkoilma treenit
     function addOutdoorWorkoutButton() {
@@ -179,11 +179,11 @@
     }
 
     function removeOutdoorWorkoutButton() {
-        var buttonToRemove = document.querySelector('#contentContainer img[alt="Ulkoilma treenit"]');
-        if (buttonToRemove) {
-            buttonToRemove.parentNode.removeChild(buttonToRemove);
-        }
+    var buttonToRemove = document.querySelector('#contentContainer button span:contains("Ulkoilma treenit")');
+    if (buttonToRemove) {
+        buttonToRemove.parentNode.parentNode.removeChild(buttonToRemove.parentNode);
     }
+}
 
     // Virtuaaliset harjoitukset
     function addVirtualWorkoutButton() {
@@ -202,11 +202,11 @@
     }
 
     function removeVirtualWorkoutButton() {
-        var buttonToRemove = document.querySelector('#contentContainer img[alt="Virtuaaliset harjoitukset"]');
-        if (buttonToRemove) {
-            buttonToRemove.parentNode.removeChild(buttonToRemove);
-        }
+    var buttonToRemove = document.querySelector('#contentContainer button span:contains("Virtuaaliset harjoitukset")');
+    if (buttonToRemove) {
+        buttonToRemove.parentNode.parentNode.removeChild(buttonToRemove.parentNode);
     }
+}
 
     // Ruokavalio
     function addDietButton() {
@@ -225,11 +225,11 @@
     }
 
     function removeDietButton() {
-        var buttonToRemove = document.querySelector('#contentContainer img[alt="Ruokavalio"]');
-        if (buttonToRemove) {
-            buttonToRemove.parentNode.removeChild(buttonToRemove);
-        }
+    var buttonToRemove = document.querySelector('#contentContainer button span:contains("Ruokavalio")');
+    if (buttonToRemove) {
+        buttonToRemove.parentNode.parentNode.removeChild(buttonToRemove.parentNode);
     }
+}
 
     // Valmennus
     function addCoachingButton() {
@@ -248,11 +248,11 @@
     }
 
     function removeCoachingButton() {
-        var buttonToRemove = document.querySelector('#contentContainer img[alt="Valmennus"]');
-        if (buttonToRemove) {
-            buttonToRemove.parentNode.removeChild(buttonToRemove);
-        }
+    var buttonToRemove = document.querySelector('#contentContainer button span:contains("Valmennus")');
+    if (buttonToRemove) {
+        buttonToRemove.parentNode.parentNode.removeChild(buttonToRemove.parentNode);
     }
+}
 
     // Stressinhallinta
     function addStressManagementButton() {
@@ -271,11 +271,11 @@
     }
 
     function removeStressManagementButton() {
-        var buttonToRemove = document.querySelector('#contentContainer img[alt="Stressinhallinta"]');
-        if (buttonToRemove) {
-            buttonToRemove.parentNode.removeChild(buttonToRemove);
-        }
+    var buttonToRemove = document.querySelector('#contentContainer button span:contains("Stressinhallinta")');
+    if (buttonToRemove) {
+        buttonToRemove.parentNode.parentNode.removeChild(buttonToRemove.parentNode);
     }
+}
 </script>
 
 </body>
