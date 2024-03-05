@@ -164,13 +164,13 @@
 
     // Ulkoilma treenit
     function addOutdoorWorkoutButton() {
-        var buttonContainer = document.createElement('div');
-        buttonContainer.innerHTML = '<button style="display: flex; align-items: center; background-color: transparent; border: none; cursor: pointer;"><img src="kuva6.jpg" alt="Ulkoilma treenit" style="width: 150px; margin-right: 10px;"><span style="font-size: 20px; color: black;">Ulkoilma treenit</span></button>';
-        buttonContainer.addEventListener('click', function() {
-            openOutdoorWorkoutPage();
-        });
-        document.getElementById('contentContainer').appendChild(buttonContainer);
-    }
+    var buttonContainer = document.createElement('div');
+    buttonContainer.innerHTML = '<button id="outdoorWorkoutButton" style="display: flex; align-items: center; background-color: transparent; border: none; cursor: pointer;"><img src="kuva6.jpg" alt="Ulkoilma treenit" style="width: 150px; margin-right: 10px;"><span style="font-size: 20px; color: black;">Ulkoilma treenit</span></button>';
+    buttonContainer.addEventListener('click', function() {
+        openOutdoorWorkoutPage();
+    });
+    document.getElementById('contentContainer').appendChild(buttonContainer);
+}
 
     function openOutdoorWorkoutPage() {
         var newWindow = window.open('', '_blank');
@@ -179,21 +179,21 @@
     }
 
     function removeOutdoorWorkoutButton() {
-    var buttonToRemove = document.querySelector('#contentContainer button span:contains("Ulkoilma treenit")');
+    var buttonToRemove = document.getElementById('outdoorWorkoutButton');
     if (buttonToRemove) {
-        buttonToRemove.parentNode.parentNode.removeChild(buttonToRemove.parentNode);
+        buttonToRemove.parentNode.removeChild(buttonToRemove);
     }
 }
 
     // Virtuaaliset harjoitukset
     function addVirtualWorkoutButton() {
-        var buttonContainer = document.createElement('div');
-        buttonContainer.innerHTML = '<button style="display: flex; align-items: center; background-color: transparent; border: none; cursor: pointer;"><img src="kuva7.jpg" alt="Virtuaaliset harjoitukset" style="width: 150px; margin-right: 10px;"><span style="font-size: 20px; color: black;">Virtuaaliset harjoitukset</span></button>';
-        buttonContainer.addEventListener('click', function() {
-            openVirtualWorkoutPage();
-        });
-        document.getElementById('contentContainer').appendChild(buttonContainer);
-    }
+    var buttonContainer = document.createElement('div');
+    buttonContainer.innerHTML = '<button id="virtualWorkoutButton" style="display: flex; align-items: center; background-color: transparent; border: none; cursor: pointer;"><img src="kuva7.jpg" alt="Virtuaaliset harjoitukset" style="width: 150px; margin-right: 10px;"><span style="font-size: 20px; color: black;">Virtuaaliset harjoitukset</span></button>';
+    buttonContainer.addEventListener('click', function() {
+        openVirtualWorkoutPage();
+    });
+    document.getElementById('contentContainer').appendChild(buttonContainer);
+}
 
     function openVirtualWorkoutPage() {
         var newWindow = window.open('', '_blank');
@@ -202,21 +202,21 @@
     }
 
     function removeVirtualWorkoutButton() {
-    var buttonToRemove = document.querySelector('#contentContainer button span:contains("Virtuaaliset harjoitukset")');
+    var buttonToRemove = document.getElementById('virtualWorkoutButton');
     if (buttonToRemove) {
-        buttonToRemove.parentNode.parentNode.removeChild(buttonToRemove.parentNode);
+        buttonToRemove.parentNode.removeChild(buttonToRemove);
     }
 }
 
     // Ruokavalio
     function addDietButton() {
-        var buttonContainer = document.createElement('div');
-        buttonContainer.innerHTML = '<button style="display: flex; align-items: center; background-color: transparent; border: none; cursor: pointer;"><img src="kuva8.jpg" alt="Ruokavalio" style="width: 150px; margin-right: 10px;"><span style="font-size: 20px; color: black;">Ruokavalio</span></button>';
-        buttonContainer.addEventListener('click', function() {
-            openDietPage();
-        });
-        document.getElementById('contentContainer').appendChild(buttonContainer);
-    }
+    var buttonContainer = document.createElement('div');
+    buttonContainer.innerHTML = '<button id="dietButton" style="display: flex; align-items: center; background-color: transparent; border: none; cursor: pointer;"><img src="kuva8.jpg" alt="Ruokavalio" style="width: 150px; margin-right: 10px;"><span style="font-size: 20px; color: black;">Ruokavalio</span></button>';
+    buttonContainer.addEventListener('click', function() {
+        openDietPage();
+    });
+    document.getElementById('contentContainer').appendChild(buttonContainer);
+}
 
     function openDietPage() {
         var newWindow = window.open('', '_blank');
@@ -225,22 +225,21 @@
     }
 
     function removeDietButton() {
-    var buttonToRemove = document.querySelector('#contentContainer button span:contains("Ruokavalio")');
+    var buttonToRemove = document.getElementById('dietButton');
     if (buttonToRemove) {
-        buttonToRemove.parentNode.parentNode.removeChild(buttonToRemove.parentNode);
+        buttonToRemove.parentNode.removeChild(buttonToRemove);
     }
 }
 
     // Valmennus
     function addCoachingButton() {
-        var buttonContainer = document.createElement('div');
-        buttonContainer.innerHTML = '<button style="display: flex; align-items: center; background-color: transparent; border: none; cursor: pointer;"><img src="kuva9.jpg" alt="Valmennus" style="width: 150px; margin-right: 10px;"><span style="font-size: 20px; color: black;">Valmennus</span></button>';
-        buttonContainer.addEventListener('click', function() {
-            openCoachingPage();
-        });
-        document.getElementById('contentContainer').appendChild(buttonContainer);
-    }
-
+    var buttonContainer = document.createElement('div');
+    buttonContainer.innerHTML = '<button id="coachingButton" style="display: flex; align-items: center; background-color: transparent; border: none; cursor: pointer;"><img src="kuva9.jpg" alt="Valmennus" style="width: 150px; margin-right: 10px;"><span style="font-size: 20px; color: black;">Valmennus</span></button>';
+    buttonContainer.addEventListener('click', function() {
+        openCoachingPage();
+    });
+    document.getElementById('contentContainer').appendChild(buttonContainer);
+}
     function openCoachingPage() {
         var newWindow = window.open('', '_blank');
         newWindow.document.write('<html><head><title>Valmennus</title></head><body><h1>Valmennus</h1><p>Valmennus tarjoaa yksilöllistä ohjausta ja tukea kohti parempaa hyvinvointia ja terveyttä. Olipa tavoitteenasi painonhallinta, kunnon kohottaminen tai terveellisemmät elämäntavat, me autamme sinua saavuttamaan ne!</p></body></html>');
@@ -248,21 +247,21 @@
     }
 
     function removeCoachingButton() {
-    var buttonToRemove = document.querySelector('#contentContainer button span:contains("Valmennus")');
+    var buttonToRemove = document.getElementById('coachingButton');
     if (buttonToRemove) {
-        buttonToRemove.parentNode.parentNode.removeChild(buttonToRemove.parentNode);
+        buttonToRemove.parentNode.removeChild(buttonToRemove);
     }
 }
 
     // Stressinhallinta
     function addStressManagementButton() {
-        var buttonContainer = document.createElement('div');
-        buttonContainer.innerHTML = '<button style="display: flex; align-items: center; background-color: transparent; border: none; cursor: pointer;"><img src="kuva10.jpg" alt="Stressinhallinta" style="width: 150px; margin-right: 10px;"><span style="font-size: 20px; color: black;">Stressinhallinta</span></button>';
-        buttonContainer.addEventListener('click', function() {
-            openStressManagementPage();
-        });
-        document.getElementById('contentContainer').appendChild(buttonContainer);
-    }
+    var buttonContainer = document.createElement('div');
+    buttonContainer.innerHTML = '<button id="stressManagementButton" style="display: flex; align-items: center; background-color: transparent; border: none; cursor: pointer;"><img src="kuva10.jpg" alt="Stressinhallinta" style="width: 150px; margin-right: 10px;"><span style="font-size: 20px; color: black;">Stressinhallinta</span></button>';
+    buttonContainer.addEventListener('click', function() {
+        openStressManagementPage();
+    });
+    document.getElementById('contentContainer').appendChild(buttonContainer);
+}
 
     function openStressManagementPage() {
         var newWindow = window.open('', '_blank');
@@ -271,9 +270,9 @@
     }
 
     function removeStressManagementButton() {
-    var buttonToRemove = document.querySelector('#contentContainer button span:contains("Stressinhallinta")');
+    var buttonToRemove = document.getElementById('stressManagementButton');
     if (buttonToRemove) {
-        buttonToRemove.parentNode.parentNode.removeChild(buttonToRemove.parentNode);
+        buttonToRemove.parentNode.removeChild(buttonToRemove);
     }
 }
 </script>
