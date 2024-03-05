@@ -97,184 +97,299 @@
     function showContent(imageSrc) {
     document.getElementById('mainImage').src = imageSrc;
     document.getElementById('mainText').style.display = 'none';
-    // Poista "Kodin treenit" -nappi joka kerta kun näytetään sisältöä
+    
+    // Poistetaan kaikki napit ennen uusien lisäämistä
     removeHomeWorkoutButton();
-    // Lisätään koodi nappia 'Kodin treenit' varten
+    removeOutdoorWorkoutButton();
+    removeVirtualWorkoutButton();
+    removeDietButton();
+    removeCoachingButton();
+    removeStressManagementButton();
+
+    // Lisätään kodin treenit nappi
     if (imageSrc === 'kuva2.jpg') {
         addHomeWorkoutButton();
-    }
-    // Lisätään napit "Ulkoilma treenit" ja "Virtuaaliset harjoitukset"
-    if (imageSrc === 'kuva2.jpg') {
         addOutdoorWorkoutButton();
         addVirtualWorkoutButton();
-    } else {
-        removeOutdoorWorkoutButton();
-        removeVirtualWorkoutButton();
     }
-    // Lisätään kuvallinen nappi "Ruokavalio"
+
+    // Lisätään ruokavalio ja valmennus napit
     if (imageSrc === 'kuva3.jpg') {
         addDietButton();
         addCoachingButton();
-    } else {
-        removeDietButton();
-        removeCoachingButton();
     }
-    // Lisätään kuvallinen nappi "Stressinhallinta"
+
+    // Lisätään stressinhallinta nappi
     if (imageSrc === 'kuva4.jpg') {
         addStressManagementButton();
-    } else {
-        removeStressManagementButton();
     }
 }
 
-    function showHomePage() {
-        document.getElementById('mainImage').src = 'kuva1.jpg';
-        document.getElementById('mainText').style.display = 'inline-block';
-        removeHomeWorkoutButton(); // Varmistetaan, että nappi poistetaan kotisivun näyttämisen jälkeen
-        removeOutdoorWorkoutButton();
-        removeVirtualWorkoutButton();
-        removeDietButton();
-        removeCoachingButton();
-        removeStressManagementButton();
-    }
+function showHomePage() {
+    document.getElementById('mainImage').src = 'kuva1.jpg';
+    document.getElementById('mainText').style.display = 'inline-block';
 
-    function addHomeWorkoutButton() {
-        // Muokattu koodia niin, että uusi sivu avataan uuteen välilehteen
-        var buttonContainer = document.createElement('div');
-        buttonContainer.innerHTML = '<button style="display: flex; align-items: center; background-color: transparent; border: none; cursor: pointer;"><img src="kuva5.jpg" alt="Kodin treenit" style="width: 150px; margin-right: 10px;"><span style="font-size: 20px; color: black;">Kodin treenit</span></button>';
-        buttonContainer.addEventListener('click', function() {
-            openHomeWorkoutPage();
-        });
-        document.getElementById('contentContainer').appendChild(buttonContainer);
-    }
+    // Poistetaan kaikki napit
+    removeHomeWorkoutButton();
+    removeOutdoorWorkoutButton();
+    removeVirtualWorkoutButton();
+    removeDietButton();
+    removeCoachingButton();
+    removeStressManagementButton();
+}
 
-    // Uuden sivun avaaminen kotitreenien kuvauksella
-    function openHomeWorkoutPage() {
-        var newWindow = window.open('', '_blank');
-        newWindow.document.write('<html><head><title>Kodin treenit</title></head><body><h1>Kodin treenit</h1><p>Treenaaminen kehittää kehoa monin eri tavoin. Se parantaa fyysistä kuntoa, lisää energiaa ja auttaa pitämään mielen virkeänä. Tulevaisuudessa lisää treenausohjelmia on tulossa, joten pysy kuulolla!</p></body></html>');
-        newWindow.document.close();
-    }
+    // Kodin treenit
+function addHomeWorkoutButton() {
+    var buttonContainer = document.createElement('div');
+    buttonContainer.innerHTML = '<button id="homeWorkoutButton" style="display: flex; align-items: center; background-color: transparent; border: none; cursor: pointer;"><img src="kuva5.jpg" alt="Kodin treenit" style="width: 150px; margin-right: 10px;"><span style="font-size: 20px; color: black;">Kodin treenit</span></button>';
+    buttonContainer.addEventListener('click', function() {
+        showHomeWorkoutText();
+    });
+    document.getElementById('contentContainer').appendChild(buttonContainer);
 
-    function removeHomeWorkoutButton() {
-    var buttonToRemove = document.querySelector('#contentContainer button');
+    // Lisää tekstielementti ja piilota se aluksi
+    var textContainer = document.createElement('div');
+    textContainer.id = 'homeWorkoutText';
+    textContainer.innerHTML = '<h1>Kodin treenit</h1><p>Treenaaminen kehittää kehoa monin eri tavoin. Se parantaa fyysistä kuntoa, lisää energiaa ja auttaa pitämään mielen virkeänä. Tulevaisuudessa lisää treenausohjelmia on tulossa, joten pysy kuulolla!</p>';
+    textContainer.style.display = 'none'; // Piilotetaan tekstielementti
+    document.getElementById('contentContainer').appendChild(textContainer);
+}
+
+function showHomeWorkoutText() {
+    // Piilota muut tekstielementit
+    hideOutdoorWorkoutText();
+    // Näytä kodin treenit tekstielementti
+    var textToShow = document.getElementById('homeWorkoutText');
+    if (textToShow) {
+        textToShow.style.display = 'block';
+    }
+}
+
+function removeHomeWorkoutButton() {
+    var buttonToRemove = document.getElementById('homeWorkoutButton');
     if (buttonToRemove) {
         buttonToRemove.parentNode.removeChild(buttonToRemove);
+        hideHomeWorkoutText(); // Lisätään kutsu piilotusfunktiolle
     }
 }
 
-    // Ulkoilma treenit
-    function addOutdoorWorkoutButton() {
+function hideHomeWorkoutText() {
+    var textToRemove = document.getElementById('homeWorkoutText');
+    if (textToRemove) {
+        textToRemove.style.display = 'none';
+    }
+}
+
+// Ulkoilma treenit
+function addOutdoorWorkoutButton() {
     var buttonContainer = document.createElement('div');
     buttonContainer.innerHTML = '<button id="outdoorWorkoutButton" style="display: flex; align-items: center; background-color: transparent; border: none; cursor: pointer;"><img src="kuva6.jpg" alt="Ulkoilma treenit" style="width: 150px; margin-right: 10px;"><span style="font-size: 20px; color: black;">Ulkoilma treenit</span></button>';
     buttonContainer.addEventListener('click', function() {
-        openOutdoorWorkoutPage();
+        showOutdoorWorkoutText();
     });
     document.getElementById('contentContainer').appendChild(buttonContainer);
+
+    // Lisää tekstielementti ja piilota se aluksi
+    var textContainer = document.createElement('div');
+    textContainer.id = 'outdoorWorkoutText';
+    textContainer.innerHTML = '<h1>Ulkoilma treenit</h1><p>Ulkoilma treenit ovat erinomainen tapa nauttia luonnosta ja samalla pitää keho aktiivisena. Raikas ilma ja vaihteleva maasto tekevät treenaamisesta miellyttävää!</p>';
+    textContainer.style.display = 'none'; // Piilotetaan tekstielementti
+    document.getElementById('contentContainer').appendChild(textContainer);
 }
 
-    function openOutdoorWorkoutPage() {
-        var newWindow = window.open('', '_blank');
-        newWindow.document.write('<html><head><title>Ulkoilma treenit</title></head><body><h1>Ulkoilma treenit</h1><p>Ulkoilma treenit ovat erinomainen tapa nauttia luonnosta ja samalla pitää keho aktiivisena. Raikas ilma ja vaihteleva maasto tekevät treenaamisesta miellyttävää!</p></body></html>');
-        newWindow.document.close();
+function showOutdoorWorkoutText() {
+    // Piilota muut tekstielementit
+    hideHomeWorkoutText();
+    // Näytä ulkoilma treenit tekstielementti
+    var textToShow = document.getElementById('outdoorWorkoutText');
+    if (textToShow) {
+        textToShow.style.display = 'block';
     }
+}
 
-    function removeOutdoorWorkoutButton() {
+function removeOutdoorWorkoutButton() {
     var buttonToRemove = document.getElementById('outdoorWorkoutButton');
     if (buttonToRemove) {
         buttonToRemove.parentNode.removeChild(buttonToRemove);
+        hideOutdoorWorkoutText(); // Lisätään kutsu piilotusfunktiolle
     }
 }
+
+function hideOutdoorWorkoutText() {
+    var textToRemove = document.getElementById('outdoorWorkoutText');
+    if (textToRemove) {
+        textToRemove.style.display = 'none';
+    }
+}
+
+
 
     // Virtuaaliset harjoitukset
     function addVirtualWorkoutButton() {
     var buttonContainer = document.createElement('div');
     buttonContainer.innerHTML = '<button id="virtualWorkoutButton" style="display: flex; align-items: center; background-color: transparent; border: none; cursor: pointer;"><img src="kuva7.jpg" alt="Virtuaaliset harjoitukset" style="width: 150px; margin-right: 10px;"><span style="font-size: 20px; color: black;">Virtuaaliset harjoitukset</span></button>';
     buttonContainer.addEventListener('click', function() {
-        openVirtualWorkoutPage();
+        showVirtualWorkoutText();
     });
     document.getElementById('contentContainer').appendChild(buttonContainer);
+
+    // Lisää tekstielementti ja piilota se aluksi
+    var textContainer = document.createElement('div');
+    textContainer.id = 'virtualWorkoutText';
+    textContainer.innerHTML = '<h1>Virtuaaliset harjoitukset</h1><p>Virtuaaliset harjoitukset tarjoavat monipuolisen tavan treenata kotoa käsin. Voit valita laajasta valikoimasta erilaisia harjoituksia ja tehdä niitä oman aikataulusi mukaan!</p>';
+    textContainer.style.display = 'none'; // Piilotetaan tekstielementti
+    document.getElementById('contentContainer').appendChild(textContainer);
 }
 
-    function openVirtualWorkoutPage() {
-        var newWindow = window.open('', '_blank');
-        newWindow.document.write('<html><head><title>Virtuaaliset harjoitukset</title></head><body><h1>Virtuaaliset harjoitukset</h1><p>Virtuaaliset harjoitukset tarjoavat monipuolisen tavan treenata kotoa käsin. Voit valita laajasta valikoimasta erilaisia harjoituksia ja tehdä niitä oman aikataulusi mukaan!</p></body></html>');
-        newWindow.document.close();
+function showVirtualWorkoutText() {
+    // Piilota muut tekstielementit
+    hideHomeWorkoutText();
+    hideOutdoorWorkoutText();
+    // Näytä virtuaaliset harjoitukset tekstielementti
+    var textToShow = document.getElementById('virtualWorkoutText');
+    if (textToShow) {
+        textToShow.style.display = 'block';
     }
+}
 
-    function removeVirtualWorkoutButton() {
+function removeVirtualWorkoutButton() {
     var buttonToRemove = document.getElementById('virtualWorkoutButton');
     if (buttonToRemove) {
         buttonToRemove.parentNode.removeChild(buttonToRemove);
+        hideVirtualWorkoutText(); // Lisätään kutsu piilotusfunktiolle
     }
 }
 
+function hideVirtualWorkoutText() {
+    var textToRemove = document.getElementById('virtualWorkoutText');
+    if (textToRemove) {
+        textToRemove.style.display = 'none';
+    }
+}
+
+
     // Ruokavalio
-    function addDietButton() {
+function addDietButton() {
     var buttonContainer = document.createElement('div');
     buttonContainer.innerHTML = '<button id="dietButton" style="display: flex; align-items: center; background-color: transparent; border: none; cursor: pointer;"><img src="kuva8.jpg" alt="Ruokavalio" style="width: 150px; margin-right: 10px;"><span style="font-size: 20px; color: black;">Ruokavalio</span></button>';
     buttonContainer.addEventListener('click', function() {
-        openDietPage();
+        showDietText();
     });
     document.getElementById('contentContainer').appendChild(buttonContainer);
+
+    // Lisää tekstielementti ja piilota se aluksi
+    var textContainer = document.createElement('div');
+    textContainer.id = 'dietText';
+    textContainer.innerHTML = '<h1>Ruokavalio</h1><p>Oikeanlainen ruokavalio on tärkeä osa terveellistä elämää. Syö monipuolisesti ja terveellisesti, ja muista juoda riittävästi vettä. Ruokavalion merkitystä ei voi koskaan aliarvioida!</p>';
+    textContainer.style.display = 'none'; // Piilotetaan tekstielementti
+    document.getElementById('contentContainer').appendChild(textContainer);
 }
 
-    function openDietPage() {
-        var newWindow = window.open('', '_blank');
-        newWindow.document.write('<html><head><title>Ruokavalio</title></head><body><h1>Ruokavalio</h1><p>Oikeanlainen ruokavalio on tärkeä osa terveellistä elämää. Syö monipuolisesti ja terveellisesti, ja muista juoda riittävästi vettä. Ruokavalion merkitystä ei voi koskaan aliarvioida!</p></body></html>');
-        newWindow.document.close();
+function showDietText() {
+    // Näytä ruokavalio tekstielementti
+    var textToShow = document.getElementById('dietText');
+    if (textToShow) {
+        textToShow.style.display = 'block';
     }
+}
 
-    function removeDietButton() {
+function removeDietButton() {
     var buttonToRemove = document.getElementById('dietButton');
     if (buttonToRemove) {
         buttonToRemove.parentNode.removeChild(buttonToRemove);
+        hideDietText(); // Lisätään kutsu piilotusfunktiolle
     }
 }
 
+function hideDietText() {
+    var textToRemove = document.getElementById('dietText');
+    if (textToRemove) {
+        textToRemove.style.display = 'none';
+    }
+}
+
+
     // Valmennus
-    function addCoachingButton() {
+function addCoachingButton() {
     var buttonContainer = document.createElement('div');
     buttonContainer.innerHTML = '<button id="coachingButton" style="display: flex; align-items: center; background-color: transparent; border: none; cursor: pointer;"><img src="kuva9.jpg" alt="Valmennus" style="width: 150px; margin-right: 10px;"><span style="font-size: 20px; color: black;">Valmennus</span></button>';
     buttonContainer.addEventListener('click', function() {
-        openCoachingPage();
+        showCoachingText();
     });
     document.getElementById('contentContainer').appendChild(buttonContainer);
-}
-    function openCoachingPage() {
-        var newWindow = window.open('', '_blank');
-        newWindow.document.write('<html><head><title>Valmennus</title></head><body><h1>Valmennus</h1><p>Valmennus tarjoaa yksilöllistä ohjausta ja tukea kohti parempaa hyvinvointia ja terveyttä. Olipa tavoitteenasi painonhallinta, kunnon kohottaminen tai terveellisemmät elämäntavat, me autamme sinua saavuttamaan ne!</p></body></html>');
-        newWindow.document.close();
-    }
 
-    function removeCoachingButton() {
+    // Lisää tekstielementti ja piilota se aluksi
+    var textContainer = document.createElement('div');
+    textContainer.id = 'coachingText';
+    textContainer.innerHTML = '<h1>Valmennus</h1><p>Valmennus tarjoaa yksilöllistä ohjausta ja tukea kohti parempaa hyvinvointia ja terveyttä. Olipa tavoitteenasi painonhallinta, kunnon kohottaminen tai terveellisemmät elämäntavat, me autamme sinua saavuttamaan ne!</p>';
+    textContainer.style.display = 'none'; // Piilotetaan tekstielementti
+    document.getElementById('contentContainer').appendChild(textContainer);
+}
+
+function showCoachingText() {
+    // Näytä valmennus tekstielementti
+    var textToShow = document.getElementById('coachingText');
+    if (textToShow) {
+        textToShow.style.display = 'block';
+    }
+}
+
+function removeCoachingButton() {
     var buttonToRemove = document.getElementById('coachingButton');
     if (buttonToRemove) {
         buttonToRemove.parentNode.removeChild(buttonToRemove);
+        hideCoachingText(); // Lisätään kutsu piilotusfunktiolle
     }
 }
 
-    // Stressinhallinta
-    function addStressManagementButton() {
+function hideCoachingText() {
+    var textToRemove = document.getElementById('coachingText');
+    if (textToRemove) {
+        textToRemove.style.display = 'none';
+    }
+}
+
+
+   // Stressinhallinta
+function addStressManagementButton() {
     var buttonContainer = document.createElement('div');
     buttonContainer.innerHTML = '<button id="stressManagementButton" style="display: flex; align-items: center; background-color: transparent; border: none; cursor: pointer;"><img src="kuva10.jpg" alt="Stressinhallinta" style="width: 150px; margin-right: 10px;"><span style="font-size: 20px; color: black;">Stressinhallinta</span></button>';
     buttonContainer.addEventListener('click', function() {
-        openStressManagementPage();
+        showStressManagementText();
     });
     document.getElementById('contentContainer').appendChild(buttonContainer);
+
+    // Lisää tekstielementti ja piilota se aluksi
+    var textContainer = document.createElement('div');
+    textContainer.id = 'stressManagementText';
+    textContainer.innerHTML = '<h1>Stressinhallinta</h1><p>Stressinhallinta on tärkeä osa hyvinvointia. Opettele rentoutumaan, priorisoimaan ja hallitsemaan stressiä tehokkaasti. Hyvinvointi alkaa mielen tasapainosta!</p>';
+    textContainer.style.display = 'none'; // Piilotetaan tekstielementti
+    document.getElementById('contentContainer').appendChild(textContainer);
 }
 
-    function openStressManagementPage() {
-        var newWindow = window.open('', '_blank');
-        newWindow.document.write('<html><head><title>Stressinhallinta</title></head><body><h1>Stressinhallinta</h1><p>Stressinhallinta on tärkeä osa hyvinvointia. Opettele rentoutumaan, priorisoimaan ja hallitsemaan stressiä tehokkaasti. Hyvinvointi alkaa mielen tasapainosta!</p></body></html>');
-        newWindow.document.close();
+function showStressManagementText() {
+    // Näytä stressinhallinta tekstielementti
+    var textToShow = document.getElementById('stressManagementText');
+    if (textToShow) {
+        textToShow.style.display = 'block';
     }
+}
 
-    function removeStressManagementButton() {
+function removeStressManagementButton() {
     var buttonToRemove = document.getElementById('stressManagementButton');
     if (buttonToRemove) {
         buttonToRemove.parentNode.removeChild(buttonToRemove);
+        hideStressManagementText(); // Lisätään kutsu piilotusfunktiolle
     }
 }
+
+function hideStressManagementText() {
+    var textToRemove = document.getElementById('stressManagementText');
+    if (textToRemove) {
+        textToRemove.style.display = 'none';
+    }
+}
+
 </script>
 
 </body>
