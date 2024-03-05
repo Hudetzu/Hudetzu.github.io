@@ -70,6 +70,18 @@
         footer p {
             font-family: Arial, sans-serif; 
         }
+
+        /* Media query mukautumaan näytön koon mukaan */
+        @media screen and (max-width: 768px) {
+            img {
+                width: calc(100% - 40px);
+            }
+            p {
+                max-width: calc(100% - 40px);
+                margin-left: 0;
+                margin-right: 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -84,8 +96,10 @@
 
 <!-- Kuvan ja tekstin sijoittaminen flexboxilla vierekkäin -->
 <div style="display: flex;" id="contentContainer">
-    <img id="mainImage" src="kuva1.jpg" alt="Kuva">
-    <p id="mainText">Säännöllinen liikunta ja hyvinvointiin panostaminen ovat avaimia terveelliseen elämään. Liikkuminen parantaa fyysistä kuntoa, lisää energiaa ja auttaa pitämään mielen virkeänä. Hyvinvointiin panostaminen kannattaa aina!</p>
+    <div>
+        <img id="mainImage" src="kuva1.jpg" alt="Kuva">
+        <p id="mainText">Säännöllinen liikunta ja hyvinvointiin panostaminen ovat avaimia terveelliseen elämään. Liikkuminen parantaa fyysistä kuntoa, lisää energiaa ja auttaa pitämään mielen virkeänä. Hyvinvointiin panostaminen kannattaa aina!</p>
+    </div>
 </div>
 
 <footer>
